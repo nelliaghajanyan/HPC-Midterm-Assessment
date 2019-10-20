@@ -14,9 +14,9 @@ class StdOutListener(StreamListener):
         pass
     def on_data(self, data):
         try:
-            print(loads(data)['text'])
+	    # uncomment to see the data streaming into kafka
+            # print(loads(data)['text'])
             producer.send('topic', loads(data)['text'])
-#             print(data)
             return True
         except BaseException as e:
             print("Error on_data %s" % str(e))
